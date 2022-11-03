@@ -204,7 +204,7 @@ VALUES
 	("680824963", "Ronald", "Power", "A", "Male", "powerr@land.co", "1990-10-10", 30, "2010-08-10", "123 2nd Street, Schenectady, NY, 12309-01"),
 	("416155508", "Camille", "Hathaway", "D", "Female", "hathac@land.co", "1991-09-10", 20, "2010-08-10", "124 2nd Street, Schenectady, NY, 12309-02"),
     ("232105522", "Justina", "Sergeant", "B", "Female", "sergej@land.co", "1980-01-15", 50, "2007-01-10", "125 2nd Street, Schenectady, NY, 12309-01"),
-    ("627386755", "Don", "Blue", "MV", "Male", "blued@land.co", "2000-05-15", 30, "2018-01-15", "126 2nd Street, Schenectady, NY, 12309-02"),
+    ("627389775", "Don", "Blue", "MV", "Male", "blued@land.co", "2000-05-15", 30, "2018-01-15", "126 2nd Street, Schenectady, NY, 12309-02"),
     ("041865556", "Hung", "Trinh", "T", "Male", "trinhh@land.co", "2000-01-07", 10, "2018-08-10", "127 2nd Street, Schenectady, NY, 12309-03"),
     ("502823428", "Candace", "Mould", "LD", "Female", "mouldc@land.co", "1995-07-10", 25, "2005-09-10", "128 2nd Street, Schenectady, NY, 12309-04"),
     ("269019796", "Anastasia", "Marina", "MM", "Female", "marina@land.co", "1980-06-01", 60, "2000-08-10", "129 2nd Street, Schenectady, NY, 12309-05"),
@@ -213,5 +213,25 @@ VALUES
     ("262117281", "Jade", "Proudfoot", "M", "Male", "prounj@land.co", "1992-07-10", 40, "2012-08-10", "132 2nd Street, Schenectady, NY, 12309-08"),
     ("519707770", "Kara", "Oliverson", "IA", "Female", "olivek@land.co", "1980-01-10", 55, "1997-08-10", "133 2nd Street, Schenectady, NY, 12309-09"),
     ("417605992","Minerva", "Leon", "A", "Female", "leonm@land.co", "2001-10-10", 15, "2021-08-06", "134 3rd Street, Schenectady, NY, 12330");
+    
+INSERT INTO employee_phone(employee_ssn, phone)
+VALUES
+	("680824963", "5056320305"),
+	("680824963", "5054203279"),
+	("416155508", "8286704454"),
+    ("232105522", "2075350426"),
+    ("627386755", "2167774130"),
+    ("041865556", "3019432887"),
+    ("502823428", "2132533822"),
+    ("269019796", "4128155323"),
+    ("469232069", "5053773175"),
+    ("545927795", "3513614564"),
+    ("545927795", "2348735131"),
+	("545927795", "5056441243"),
+    ("262117281", "5056210175"),
+    ("519707770", "2079191562"),
+    ("417605992", "5057124167");
+    
+    
 COMMIT;
 
