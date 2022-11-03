@@ -1,0 +1,2 @@
+scp *.sql orzo:~
+@pause
