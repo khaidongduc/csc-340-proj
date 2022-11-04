@@ -197,7 +197,7 @@ VALUES
 	(2, '2001-07-09', 3, 6, 0, "124 1st Street, Schenectady, NY, 12309-02", 2),
 	(3, '2001-08-09', 2, 4, 1, "125 1st Street, Schenectady, NY, 12308-03", 3),
 	(4, '2001-09-09', 1, 2, 0, "126 1st Street, Schenectady, NY, 12308-04", 4),
-	(5, '2001-10-09', 5, 5, 1, "127 1st Street, Schenectady, NY, 12308-05", 5);
+	(5, '2001-10-09', 3, 6, 1, "127 1st Street, Schenectady, NY, 12308-05", 5);
 
 INSERT INTO employee(ssn, fname, lname, mis, sex, email, dob, hourly_rate, hire_date, address)
 VALUES
