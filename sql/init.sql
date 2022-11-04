@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS employee(
     sex VARCHAR(20) NOT NULL,
     email VARCHAR(50) NOT NULL,
     dob DATE NOT NULL,
-    hourly_rate float NOT NULL,
+    hourly_rate FLOAT NOT NULL,
     hire_date DATE NOT NULL,
 	address VARCHAR(500) NOT NULL,
     
@@ -127,9 +127,9 @@ CREATE TABLE IF NOT EXISTS parking_slot(
     slot_no INTEGER NOT NULL,
     type VARCHAR(20) NOT NULL,
     
-    vehicle_license_plate VARCHAR(10) NOT NULL,
-    in_date DATE NOT NULL,
-    in_time time NOT NULL,
+    vehicle_license_plate VARCHAR(10),
+    in_date DATE,
+    in_time time,
 	
     PRIMARY KEY(parking_lot_no, section, slot_no),
     FOREIGN KEY(parking_lot_no) REFERENCES parking_lot(parking_lot_no),
@@ -155,13 +155,13 @@ CREATE TABLE IF NOT EXISTS apartment(
     no_of_bedroom INTEGER NOT NULL, 
     no_of_bathroom INTEGER NOT NULL, 
     type VARCHAR(20) NOT NULL, 
-    size float NOT NULL,  
-    lease_start_date DATE NOT NULL, 
-    lease_end_date DATE NOT NULL, 
-    lease_signed_date DATE NOT NULL, 
-    utilities_included BINARY NOT NULL, 
-    monthly_rate float NOT NULL, 
-    lease_tenant_phone VARCHAR(20) NOT NULL,
+    size FLOAT NOT NULL,  
+    lease_start_date DATE, 
+    lease_end_date DATE, 
+    lease_signed_date DATE, 
+    utilities_included BINARY, 
+    monthly_rate FLOAT, 
+    lease_tenant_phone VARCHAR(20),
     
     PRIMARY KEY(building_no, floor, room_no),
 	FOREIGN KEY(building_no) REFERENCES building(building_no),
@@ -185,11 +185,11 @@ CREATE TABLE IF NOT EXISTS subscribed(
 
 INSERT INTO parking_lot(parking_lot_no, capacity)
 VALUES
-	(1, 40),
-    (2, 60),
-    (3, 40),
-    (4, 20),
-    (5, 40);
+	(1, 5),
+    (2, 5),
+    (3, 5),
+    (4, 5),
+    (5, 5);
 
 INSERT INTO building(building_no, build_date, no_of_floor, no_of_room, allow_pets, address, parking_lot_no)
 VALUES
@@ -311,3 +311,85 @@ VALUES
 	("7ZMU685", "2020-12-09", "4515933138"),
 	("EPP5277", "2019-11-29", "4515933138");
     
+INSERT INTO parking_slot(parking_lot_no, section, slot_no, type, vehicle_license_plate, in_date, in_time)
+VALUES
+	(1, "A", 1, "car", "4TBW335", "2022-09-12", "12:30"),
+    (1, "A", 2, "car", "5JZR350", "2022-09-12", "11:30"),
+    (1, "A", 3, "car", "7ZMU685", "2022-08-12", "09:30"),
+    (1, "B", 1, "moped", "6BFM827", "2015-10-12", "12:30"),
+    (1, "B", 2, "moped", NULL, NULL, NULL),
+    
+    (2, "A", 1, "car", "EPP5277", "2022-09-12", "12:30"),
+    (2, "A", 2, "car", NULL, NULL, NULL),
+    (2, "A", 3, "car", NULL, NULL, NULL),
+    (2, "B", 1, "moped", "LGP7277", "2022-09-12", "12:33"),
+    (2, "B", 2, "moped", NULL, NULL, NULL),
+    
+    (3, "A", 1, "car", "YZP2277", "2022-09-12", "12:30"),
+    (3, "A", 2, "car", "DUP5277", "2022-09-12", "12:33"),
+    (3, "A", 3, "car", NULL, NULL, NULL),
+    (3, "B", 1, "moped", NULL, NULL, NULL),
+    (3, "B", 2, "moped", NULL, NULL, NULL),
+    
+    (4, "A", 1, "car", NULL, NULL, NULL),
+    (4, "A", 2, "car", NULL, NULL, NULL),
+    (4, "A", 3, "car", NULL, NULL, NULL),
+    (4, "B", 1, "moped", "EOP9347", "2022-11-12", "12:30"),
+    (4, "B", 2, "moped", NULL, NULL, NULL),
+    
+    (5, "A", 1, "car", NULL, NULL, NULL),
+    (5, "A", 2, "car", NULL, NULL, NULL),
+    (5, "A", 3, "car", NULL, NULL, NULL),
+    (5, "B", 1, "moped", NULL, NULL, NULL),
+    (5, "B", 2, "moped", NULL, NULL, NULL);
+
+INSERT INTO service(building_no, name, opentime, closetime, type, operating_company)
+VALUES
+	(1, "Lunar Laundry", "7:00", "17:00", "laundry", "LunarCo"),
+    (2, "Lunar Laundry", "7:00", "17:00", "laundry", "LunarCo"),
+    (3, "Lunar Laundry", "7:00", "17:00", "laundry", "LunarCo"),
+    (4, "Lunar Laundry", "7:00", "17:00", "laundry", "LunarCo"),
+    (5, "Lunar Laundry", "7:00", "17:00", "laundry", "LunarCo"),
+	(1, "Aquamate Swimming", "8:00", "22:00", "swimming", "AquaCo"),
+    (2, "Fitness Gym", "7:00", "22:00", "gym", "FitnessCo");
+    
+INSERT INTO apartment(building_no, floor, room_no, no_of_bedroom, no_of_bathroom, type, size,
+		lease_start_date, lease_end_date, lease_signed_date, utilities_included, monthly_rate, lease_tenant_phone)
+VALUES
+	(1, 1, 1, 2, 3, "duplex", 100, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "5055101519"),
+    (1, 1, 2, 2, 3, "duplex", 200, NULL, NULL, NULL, NULL, NULL, NULL),
+    (1, 2, 1, 2, 3, "duplex", 150, NULL, NULL, NULL, NULL, NULL, NULL),
+    (1, 2, 2, 2, 3, "duplex", 200, NULL, NULL, NULL, NULL, NULL, NULL),
+    
+	(2, 1, 1, 2, 3, "duplex", 200, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "9822078501"),
+    (2, 1, 2, 2, 3, "duplex", 210, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "6886941262"),
+    (2, 2, 1, 2, 3, "duplex", 250, NULL, NULL, NULL, NULL, NULL, NULL),
+    (2, 2, 2, 2, 3, "duplex", 230, NULL, NULL, NULL, NULL, NULL, NULL),
+	(2, 3, 1, 2, 3, "duplex", 210, NULL, NULL, NULL, NULL, NULL, NULL),
+    (2, 3, 2, 2, 3, "duplex", 200, NULL, NULL, NULL, NULL, NULL, NULL),
+    
+    (3, 1, 1, 2, 3, "duplex", 110, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "2156670742"),
+    (3, 1, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
+    (3, 2, 1, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
+    (3, 2, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
+    
+    (4, 1, 1, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
+    (4, 1, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
+    
+	(5, 1, 1, 2, 3, "duplex", 110, NULL, NULL, NULL, NULL, NULL, NULL),
+    (5, 1, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
+    (5, 2, 1, 2, 3, "duplex", 130, NULL, NULL, NULL, NULL, NULL, NULL),
+    (5, 2, 2, 2, 3, "duplex", 130, NULL, NULL, NULL, NULL, NULL, NULL),
+	(5, 3, 1, 2, 3, "duplex", 110, NULL, NULL, NULL, NULL, NULL, NULL),
+    (5, 3, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL);
+    
+INSERT INTO subscribed(person_phone, service_building_no, service_name, start_date, end_date, type)
+VALUES
+	("5055101519", 1, "Lunar Laundry", "2021-09-09", "2022-12-30", "personal"),
+    ("5055101519", 1, "Aquamate Swimming", "2021-09-09", "2023-02-28", "business"),
+    ("5055101519", 2, "Fitness Gym", "2021-08-09", "2022-12-31", "personal"),
+    ("3867410059", 2, "Lunar Laundry", "2021-09-09", "2022-12-30", "personal"),
+	("5506112804", 2, "Fitness Gym", "2021-08-09", "2022-12-31", "business"),
+	("6452451857", 3, "Lunar Laundry", "2021-09-09", "2022-12-30", "personal"),
+	("6554382010", 4, "Lunar Laundry", "2021-09-09", "2022-12-30", "personal"),
+	("6669680591", 5, "Lunar Laundry", "2021-08-09", "2023-02-28", "business");
