@@ -291,3 +291,23 @@ VALUES
 	("6554382010", "126 3rd Street, Schenectady, NY, 12310-04"),
 	("6669680591", "127 3rd Street, Schenectady, NY, 12310-05");
 
+INSERT INTO vehicle(license_plate, type, color)
+VALUES
+	("4TBW335", "car", "red"),
+    ("5JZR350", "car", "blue"),
+    ("6BFM827", "moped", "yellow"),
+    ("7ZMU685", "car", "black"),
+    ("EPP5277", "car", "white"),
+	("LGP7277", "moped", "white"),
+	("YZP2277", "car", "white"),
+	("DUP5277", "car", "black"),
+	("EOP9347", "moped", "purple");
+
+INSERT INTO tenant_vehicle(vehicle_license_plate, register_date, tenant_phone)
+VALUES
+	("4TBW335", "2022-10-10", "5055101519"),
+	("5JZR350", "2019-06-15", "5055101519"),
+	("6BFM827", "2020-09-19", "5055101519"),
+	("7ZMU685", "2020-12-09", "4515933138"),
+	("EPP5277", "2019-11-29", "4515933138");
+    
