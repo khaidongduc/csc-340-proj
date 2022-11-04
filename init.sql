@@ -1,4 +1,4 @@
-BEGIN;
+
 
 -- drop all existing tables
 DROP TABLE IF EXISTS 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS building(
 );
 
 CREATE TABLE IF NOT EXISTS employee(
-	ssn CHAR(9) NOT NULL,
+	ssn VARCHAR(20) NOT NULL,
     fname VARCHAR(20) NOT NULL,
     lname VARCHAR(20) NOT NULL,
     mis VARCHAR(10) NOT NULL,
@@ -47,15 +47,15 @@ CREATE TABLE IF NOT EXISTS employee(
 );
 
 CREATE TABLE IF NOT EXISTS employee_phone(
-	employee_ssn  CHAR(9) NOT NULL,
+	employee_ssn  VARCHAR(20) NOT NULL,
     phone VARCHAR(20) NOT NULL,
     
-    PRIMARY KEY(employee_ssn, phone),
+    PRIMARY KEY(phone),
     FOREIGN KEY(employee_ssn) REFERENCES employee(ssn)
 );
 
 CREATE TABLE IF NOT EXISTS manager(
-	employee_ssn  CHAR(9) NOT NULL,
+	employee_ssn  VARCHAR(20) NOT NULL,
     building_no INTEGER NOT NULL,
     
     PRIMARY KEY(employee_ssn),
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS manager(
 );
 
 CREATE TABLE IF NOT EXISTS worker(
-	employee_ssn  CHAR(9) NOT NULL,
+	employee_ssn CHAR(9) NOT NULL,
     building_no INTEGER NOT NULL,
     type VARCHAR(20), 
     
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS person(
 
 CREATE TABLE IF NOT EXISTS tenant(
 	person_phone VARCHAR(20) NOT NULL,
-    ssn  CHAR(9) NOT NULL,
+    ssn CHAR(9) NOT NULL,
     depended_tenant_phone VARCHAR(20),
     
     PRIMARY KEY(person_phone),
@@ -185,18 +185,18 @@ CREATE TABLE IF NOT EXISTS subscribed(
 
 INSERT INTO parking_lot(parking_lot_no, capacity)
 VALUES
-	(1, 200),
-    (2, 300),
-    (3, 50),
-    (4, 70),
-    (5, 100);
+	(1, 40),
+    (2, 60),
+    (3, 40),
+    (4, 20),
+    (5, 40);
 
 INSERT INTO building(building_no, build_date, no_of_floor, no_of_room, allow_pets, address, parking_lot_no)
 VALUES
 	(1, '2001-06-09', 2, 4, 1, "123 1st Street, Schenectady, NY, 12308-01", 1),
-	(2, '2001-07-09', 3, 6, 1, "124 1st Street, Schenectady, NY, 12309-02", 2),
+	(2, '2001-07-09', 3, 6, 0, "124 1st Street, Schenectady, NY, 12309-02", 2),
 	(3, '2001-08-09', 2, 4, 1, "125 1st Street, Schenectady, NY, 12308-03", 3),
-	(4, '2001-09-09', 1, 2, 1, "126 1st Street, Schenectady, NY, 12308-04", 4),
+	(4, '2001-09-09', 1, 2, 0, "126 1st Street, Schenectady, NY, 12308-04", 4),
 	(5, '2001-10-09', 5, 5, 1, "127 1st Street, Schenectady, NY, 12308-05", 5);
 
 INSERT INTO employee(ssn, fname, lname, mis, sex, email, dob, hourly_rate, hire_date, address)
@@ -213,14 +213,15 @@ VALUES
     ("262117281", "Jade", "Proudfoot", "M", "Male", "prounj@land.co", "1992-07-10", 40, "2012-08-10", "132 2nd Street, Schenectady, NY, 12309-08"),
     ("519707770", "Kara", "Oliverson", "IA", "Female", "olivek@land.co", "1980-01-10", 55, "1997-08-10", "133 2nd Street, Schenectady, NY, 12309-09"),
     ("417605992","Minerva", "Leon", "A", "Female", "leonm@land.co", "2001-10-10", 15, "2021-08-06", "134 3rd Street, Schenectady, NY, 12330");
-    
+
+
 INSERT INTO employee_phone(employee_ssn, phone)
 VALUES
 	("680824963", "5056320305"),
 	("680824963", "5054203279"),
 	("416155508", "8286704454"),
     ("232105522", "2075350426"),
-    ("627386755", "2167774130"),
+    ("627389775", "2167774130"),
     ("041865556", "3019432887"),
     ("502823428", "2132533822"),
     ("269019796", "4128155323"),
@@ -232,6 +233,23 @@ VALUES
     ("519707770", "2079191562"),
     ("417605992", "5057124167");
     
+INSERT INTO manager(employee_ssn, building_no)
+VALUES
+	("269019796", 1),
+    ("519707770", 2),
+	("232105522", 3),
+	("262117281", 4),
+	("627389775", 5);
     
-COMMIT;
+    
+INSERT INTO worker(employee_ssn, building_no, type)
+VALUES
+	("680824963", 1, "Janitor"),
+	("469232069", 2, "Security"),
+	("502823428", 3, "Plumber"),
+	("416155508", 4, "Plumber"),
+	("545927795", 5, "Electrician"),
+	("417605992", 2, "Security"),
+	("041865556", 3, "Janitor");
+
 
