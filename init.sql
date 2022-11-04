@@ -251,5 +251,43 @@ VALUES
 	("545927795", 5, "Electrician"),
 	("417605992", 2, "Security"),
 	("041865556", 3, "Janitor");
+ 
 
+INSERT INTO person(fname, lname, mis, sex, dob, email, phone)
+VALUES
+	("Shanon", "Workman", "A", "Female", "1990-09-09", "shanonw@gmail.com", "5055101519"),
+    ("Gary", "Nelson", "B", "Male", "1995-05-09", "garyn@gmail.com", "6554382010"),
+    ("Ismael", "Patterson", "C", "Male", "1999-02-02", "ismaelp@gmail.com", "5506112804"),
+    ("Anna", "Gabrielsen", "D", "Female", "2000-01-09", "annag@gmail.com", "7714772096"),
+    ("Michael", "Workman", "ED", "Male", "2002-01-01", "michaelw@gmail.com", "4515933138"),
+    ("Pamela", "Cruz", "AS", "Female", "1996-03-03", "pamelac@gmail.com", "2156670742"),
+    ("Andrew", "Obrien", "SW", "Male", "1989-09-10", "andrewo@gmail.com", "6669680591"),
+    ("Cheryl", "Edwards", "KH", "Female", "1997-12-02", "cheryle@gmail.com", "6452451857"),
+    ("Roberta", "Workman", "RG", "Female", "1990-09-09", "robertaw@gmail.com", "1185349029"),
+    ("Shanon", "Fields", "QE", "Female", "1990-09-09", "shanonf@gmail.com", "6886941262"),
+    ("Jon", "Workman", "P", "Male", "1990-09-09", "johnw@gmail.com", "2185579873"),
+    ("Shanon", "Brown", "K", "Female", "1990-09-09", "shanonb@gmail.com", "3867410059"),
+    ("Joshua", "Brown", "G", "Male", "1990-09-09", "joshuab@gmail.com", "9822078501"),
+    ("Hart", "Workman", "W", "Male", "1990-09-09", "hartw@gmail.com", "9750383219");
+    
+
+INSERT INTO tenant(person_phone, ssn, depended_tenant_phone)
+VALUES
+	("5055101519", "519177808", NULL),
+    ("4515933138", "449303642", "5055101519"),
+    ("1185349029", "510318312", "5055101519"),
+    ("2185579873", "041906822", "5055101519"),
+    ("9750383219", "417312080", "5055101519"),
+    ("9822078501", "503212684", NULL),
+    ("7714772096", "520442597", "9822078501"),
+    ("6886941262", "528937347", NULL),
+    ("2156670742", "440360264", NULL);
+
+INSERT INTO non_tenant(person_phone, address)
+VALUES
+	("3867410059", "123 3rd Street, Schenectady, NY, 12310-01"),
+	("5506112804", "124 3rd Street, Schenectady, NY, 12310-02"),
+	("6452451857", "125 3rd Street, Schenectady, NY, 12310-03"),
+	("6554382010", "126 3rd Street, Schenectady, NY, 12310-04"),
+	("6669680591", "127 3rd Street, Schenectady, NY, 12310-05");
 
