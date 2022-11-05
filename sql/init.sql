@@ -204,7 +204,7 @@ VALUES
 	("680824963", "Ronald", "Power", "A", "Male", "powerr@land.co", "1990-10-10", 30, "2010-08-10", "123 2nd Street, Schenectady, NY, 12309-01"),
 	("416155508", "Camille", "Hathaway", "D", "Female", "hathac@land.co", "1991-09-10", 20, "2010-08-10", "124 2nd Street, Schenectady, NY, 12309-02"),
     ("232105522", "Justina", "Sergeant", "B", "Female", "sergej@land.co", "1980-01-15", 50, "2007-01-10", "125 2nd Street, Schenectady, NY, 12309-01"),
-    ("627389775", "Don", "Blue", "MV", "Male", "blued@land.co", "2000-05-15", 30, "2018-01-15", "126 2nd Street, Schenectady, NY, 12309-02"),
+    ("627389775", "Donald", "Blued", "MV", "Male", "blued@land.co", "2000-05-15", 30, "2018-01-15", "126 2nd Street, Schenectady, NY, 12309-02"),
     ("041865556", "Hung", "Trinh", "T", "Male", "trinhh@land.co", "2000-01-07", 10, "2018-08-10", "127 2nd Street, Schenectady, NY, 12309-03"),
     ("502823428", "Candace", "Mould", "LD", "Female", "mouldc@land.co", "1995-07-10", 25, "2005-09-10", "128 2nd Street, Schenectady, NY, 12309-04"),
     ("269019796", "Anastasia", "Marina", "MM", "Female", "marina@land.co", "1980-06-01", 60, "2000-08-10", "129 2nd Street, Schenectady, NY, 12309-05"),
