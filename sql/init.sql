@@ -172,7 +172,6 @@ CREATE TABLE IF NOT EXISTS rented_apartment(
     utilities_included BINARY NOT NULL, 
     monthly_rate FLOAT NOT NULL, 
     lease_tenant_phone VARCHAR(20) NOT NULL,
-    lease_tenant_phone VARCHAR(20) NOT NULL,
     
 	PRIMARY KEY(building_no, floor, room_no),
 	FOREIGN KEY(building_no) REFERENCES building(building_no),
