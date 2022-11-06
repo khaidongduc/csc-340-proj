@@ -2,7 +2,8 @@
 
 -- drop all existing tables
 DROP TABLE IF EXISTS 
-	subscribed, apartment, service, 
+	subscribed, rented_apartment, apartment, 
+    service, 
     tenant_vehicle, vehicle, 
     non_tenant, tenant, person,
     parking_slot, parking_lot,
@@ -155,7 +156,16 @@ CREATE TABLE IF NOT EXISTS apartment(
     no_of_bedroom INTEGER NOT NULL, 
     no_of_bathroom INTEGER NOT NULL, 
     type VARCHAR(20) NOT NULL, 
-    size FLOAT NOT NULL,  
+    size FLOAT NOT NULL, 
+    
+    PRIMARY KEY(building_no, floor, room_no),
+	FOREIGN KEY(building_no) REFERENCES building(building_no)
+);
+
+CREATE TABLE IF NOT EXISTS rented_apartment(
+	building_no INTEGER NOT NULL, 
+    floor INTEGER NOT NULL, 
+    room_no INTEGER NOT NULL, 
     lease_start_date DATE, 
     lease_end_date DATE, 
     lease_signed_date DATE, 
@@ -163,9 +173,9 @@ CREATE TABLE IF NOT EXISTS apartment(
     monthly_rate FLOAT, 
     lease_tenant_phone VARCHAR(20),
     
-    PRIMARY KEY(building_no, floor, room_no),
+	PRIMARY KEY(building_no, floor, room_no),
 	FOREIGN KEY(building_no) REFERENCES building(building_no),
-    FOREIGN KEY(lease_tenant_phone) REFERENCES tenant(person_phone)
+	FOREIGN KEY(lease_tenant_phone) REFERENCES tenant(person_phone)
 );
 
 CREATE TABLE IF NOT EXISTS subscribed(
@@ -353,36 +363,43 @@ VALUES
 	(1, "Aquamate Swimming", "8:00", "22:00", "swimming", "AquaCo"),
     (2, "Fitness Gym", "7:00", "22:00", "gym", "FitnessCo");
     
-INSERT INTO apartment(building_no, floor, room_no, no_of_bedroom, no_of_bathroom, type, size,
+INSERT INTO apartment(building_no, floor, room_no, no_of_bedroom, no_of_bathroom, type, size)
+VALUES
+	(1, 1, 1, 2, 3, "duplex", 100),
+    (1, 1, 2, 2, 3, "duplex", 200),
+    (1, 2, 1, 2, 3, "duplex", 150),
+    (1, 2, 2, 2, 3, "duplex", 200),
+    
+	(2, 1, 1, 2, 3, "duplex", 200),
+    (2, 1, 2, 2, 3, "duplex", 210),
+    (2, 2, 1, 2, 3, "duplex", 250),
+    (2, 2, 2, 2, 3, "duplex", 230),
+	(2, 3, 1, 2, 3, "duplex", 210),
+    (2, 3, 2, 2, 3, "duplex", 200),
+    
+    (3, 1, 1, 2, 3, "duplex", 110),
+    (3, 1, 2, 2, 3, "duplex", 120),
+    (3, 2, 1, 2, 3, "duplex", 120),
+    (3, 2, 2, 2, 3, "duplex", 120),
+    
+    (4, 1, 1, 2, 3, "duplex", 120),
+    (4, 1, 2, 2, 3, "duplex", 120),
+    
+	(5, 1, 1, 2, 3, "duplex", 110),
+    (5, 1, 2, 2, 3, "duplex", 120),
+    (5, 2, 1, 2, 3, "duplex", 130),
+    (5, 2, 2, 2, 3, "duplex", 130),
+	(5, 3, 1, 2, 3, "duplex", 110),
+    (5, 3, 2, 2, 3, "duplex", 120);
+
+INSERT INTO rented_apartment(building_no, floor, room_no,
 		lease_start_date, lease_end_date, lease_signed_date, utilities_included, monthly_rate, lease_tenant_phone)
 VALUES
-	(1, 1, 1, 2, 3, "duplex", 100, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "5055101519"),
-    (1, 1, 2, 2, 3, "duplex", 200, NULL, NULL, NULL, NULL, NULL, NULL),
-    (1, 2, 1, 2, 3, "duplex", 150, NULL, NULL, NULL, NULL, NULL, NULL),
-    (1, 2, 2, 2, 3, "duplex", 200, NULL, NULL, NULL, NULL, NULL, NULL),
-    
-	(2, 1, 1, 2, 3, "duplex", 200, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "9822078501"),
-    (2, 1, 2, 2, 3, "duplex", 210, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "6886941262"),
-    (2, 2, 1, 2, 3, "duplex", 250, NULL, NULL, NULL, NULL, NULL, NULL),
-    (2, 2, 2, 2, 3, "duplex", 230, NULL, NULL, NULL, NULL, NULL, NULL),
-	(2, 3, 1, 2, 3, "duplex", 210, NULL, NULL, NULL, NULL, NULL, NULL),
-    (2, 3, 2, 2, 3, "duplex", 200, NULL, NULL, NULL, NULL, NULL, NULL),
-    
-    (3, 1, 1, 2, 3, "duplex", 110, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "2156670742"),
-    (3, 1, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
-    (3, 2, 1, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
-    (3, 2, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
-    
-    (4, 1, 1, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
-    (4, 1, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
-    
-	(5, 1, 1, 2, 3, "duplex", 110, NULL, NULL, NULL, NULL, NULL, NULL),
-    (5, 1, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL),
-    (5, 2, 1, 2, 3, "duplex", 130, NULL, NULL, NULL, NULL, NULL, NULL),
-    (5, 2, 2, 2, 3, "duplex", 130, NULL, NULL, NULL, NULL, NULL, NULL),
-	(5, 3, 1, 2, 3, "duplex", 110, NULL, NULL, NULL, NULL, NULL, NULL),
-    (5, 3, 2, 2, 3, "duplex", 120, NULL, NULL, NULL, NULL, NULL, NULL);
-    
+	(1, 1, 1, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "5055101519"),
+	(2, 1, 1, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "9822078501"),
+    (2, 1, 2, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "6886941262"),
+    (3, 1, 1, "2020-09-12", "2030-09-12", "2020-08-11", 1, 800, "2156670742");
+
 INSERT INTO subscribed(person_phone, service_building_no, service_name, start_date, end_date, type)
 VALUES
 	("5055101519", 1, "Lunar Laundry", "2021-09-09", "2022-12-30", "personal"),
